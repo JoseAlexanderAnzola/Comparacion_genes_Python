@@ -1,8 +1,7 @@
-# cargar el archivo fasta de "Bacillus halodurans" para su lectura
-
 B_halodurans_gene_set = set()  # definir el set
 B_halodurans_gene_list = list()  # definir la lista otra manera mas profecional = []
 
+# cargar el archivo fasta de "Bacillus halodurans" para su lectura
 
 with open("Bacillus_halodurans.gb") as file:
     for lines in file:
@@ -17,11 +16,12 @@ with open("Bacillus_halodurans.gb") as file:
     pass
 
 
-
-# cargar el archivo fasta de "Bacillus halodurans" para su lectura
+##########################
 
 B_subtilis_gene_set = set()  # definir el set
 B_subtilis_gene_list = list()  # definir la lista otra manera mas profecional = []
+
+# cargar el archivo fasta de "Bacillus halodurans" para su lectura
 
 with open("Bacillus_subtilis.gb") as file:
     for lines in file:
@@ -36,18 +36,35 @@ with open("Bacillus_subtilis.gb") as file:
     pass
 
 
+######################################################################################################
 
+# Para calcular la diferencia de genes
 
-# Para calcular la diferencia de genes existentes entre Bacillus halodurans y  Bacillus thuringiensis
+# genes presentes solo en Bacillus halodurans
+genes_diferent_halodurans_set = set()
+genes_diferent_halodurans_list = []
 
-gene_diferent_halodurans_subtilis = []
 for element in B_halodurans_gene_set:
     if element not in B_subtilis_gene_set:
-        gene_diferent_halodurans_subtilis.append(element)
-print("Genes presentes en B. halodurans y no en B. subtilis :", gene_diferent_halodurans_subtilis)
+        genes_diferent_halodurans_set.add(element)
+        genes_diferent_halodurans_list.append(element)
+print("Genes presentes solo  B. halodurans:", genes_diferent_halodurans_set)
 pass
 
+######################################################################################################
 
+# genes presentes solo en Bacillus subtilis
+genes_diferent_subtilis_set = set()
+genes_diferent_subtilis_list = []
+
+for element in B_subtilis_gene_set:
+    if element not in B_halodurans_gene_set:
+        genes_diferent_subtilis_set.add(element)
+        genes_diferent_subtilis_list.append(element)
+print("Genes presentes solo  B. subtilis:", genes_diferent_subtilis_set)
+pass
+
+######################################################################################################
 
 # Para encontrar los genes en comun que comparten Bacillus halodurans y  Bacillus thuringiensis
 
@@ -62,7 +79,7 @@ print("Genes que comparten B. halodurans y B. subtilis :", gene_equals_haloduran
 pass
 
 
-
+####################################################################################################
 
 # para ver si  el codigo funciona,
 # se comprovo mediante genes que comparten en comun y genes que no comparten,
